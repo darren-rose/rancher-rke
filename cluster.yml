@@ -1,0 +1,37 @@
+bastion_host:
+  address: bastion.com
+  user: darose
+  port: 22
+  ssh_key_path: ~/.ssh/id_rsa
+
+nodes:
+- address: node1.com
+  role:
+  - controlplane
+  - worker
+  - etcd
+  user: darose
+  ssh_key_path: ~/.ssh/id_rsa
+  labels:
+    type: anything
+- address: node2.com
+  role:
+  - controlplane
+  - worker
+  - etcd
+  user: darose
+  ssh_key_path: ~/.ssh/id_rsa
+- address: node3.com
+  role:
+  - worker
+  - etcd
+  user: darose
+  ssh_key_path: ~/.ssh/id_rsa
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
+
+cluster_name: cluster-name
